@@ -45,12 +45,32 @@ add_filter( 'rest_post_query', 'post_meta_request_params', 99, 2 );
 
 
 /**
- * Register meta boxes.
+ * Register meta boxes for youtube video ID.
+ * add_meta_box( $id, $title, $callback, $screen, $context, $priority, $callback_args)
  */
 function hcf_register_meta_boxes() {
     add_meta_box( 'youtube_video_id', __( 'Youtube Video ID', 'hcf' ), 'hcf_display_callback', 'post', "side", "high", null);
 }
 add_action( 'add_meta_boxes', 'hcf_register_meta_boxes' );
+
+
+/**
+ * Register meta boxes for youtube video ID.
+ * add_meta_box( $id, $title, $callback, $screen, $context, $priority, $callback_args)
+ */
+function hcf_register_meta_boxes_for_district() {
+    add_meta_box( 'district_name', __( 'District and Voice Column', 'hcf2' ), 'hcf_display_callback_district', 'post', "side", "high", null);
+}
+add_action( 'add_meta_boxes', 'hcf_register_meta_boxes_for_district' );
+
+/**
+ * Meta box display callback.
+ *
+ * @param WP_Post $post Current post object.
+ */
+function hcf_display_callback_district( $post ) {
+    include plugin_dir_path( __FILE__ ) . './_form-district.php';
+}
 
 /**
  * Meta box display callback.
@@ -73,6 +93,8 @@ function hcf_save_meta_box( $post_id ) {
     }
     $fields = [
         'youtube_video_id',
+        'district',
+        'voice_column',
     ];
     foreach ( $fields as $field ) {
         if ( array_key_exists( $field, $_POST ) ) {
