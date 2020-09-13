@@ -27,7 +27,7 @@
         <input id="is_featured" name="is_featured" type="checkbox" value="true" <?= checked( $is_featured, 'true' ) ?>/>
     </div>
     <div class="description" style="background-color: azure">
-        <p>Feature in Voice Column?</p>
+        <p>Feature in Voice Exclusive?</p>
         <div class="d-block clearfix width50">
             <div class="text-center float-left">
                 <input type="radio" id="voice_column_yes" name="voice_column" value="yes" <?= ($voice_column == 'yes' ) ? "checked":"";?>>
